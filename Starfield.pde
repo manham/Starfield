@@ -2,12 +2,13 @@ Particle[] particles;
 void setup()
 {
 	size(400, 400);
-	particles = new Particle[100];
+	particles = new Particle[900];
 	for(int i = 0; i < particles.length; i = i + 1)
 	{
 		particles[i] = new NormalParticle();
 	}
 	particles[0] = new OddballParticle();
+	particles[870] = new JumboParticle();
 }
 void draw()
 {
@@ -51,21 +52,22 @@ class OddballParticle implements Particle
 	OddballParticle(){
 		oX = 200;
 		oY = 200;
-		oTheta = Math.random()*2*Math.PI;
-		oSpeed = .1;
 		oColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	public void move(){
-		oX = oX + Math.sin(oTheta)*oSpeed;
-		oY = oY + Math.cos(oTheta)*oSpeed;
+		oX = mouseY;
+		oY = mouseX;
 	}
 	public void show(){
 		fill(oColor);
-		ellipse((float)oX, (float)oY, 12, 12);
+		ellipse((float)oX, (float)oY, 2, 2);
 	}
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 {
-	//your code here
+	void show(){
+		fill(nColor);
+		ellipse((float)nX, (float)nY, 5, 5);
+	}
 }
 
