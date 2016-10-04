@@ -1,8 +1,10 @@
 Particle[] particles;
+int p = 1200;
 void setup()
 {
 	size(400, 400);
-	particles = new Particle[900];
+	frameRate(15);
+	particles = new Particle[p];
 	for(int i = 0; i < particles.length; i = i + 1)
 	{
 		particles[i] = new NormalParticle();
@@ -55,8 +57,8 @@ class OddballParticle implements Particle
 		oColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	public void move(){
-		oX = mouseY;
-		oY = mouseX;
+		oX = mouseY + (int)(Math.random()*101)-50;
+		oY = mouseX + (int)(Math.random()*101)-50;
 	}
 	public void show(){
 		fill(oColor);
